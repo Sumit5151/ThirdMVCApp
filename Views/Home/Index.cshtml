@@ -1,0 +1,34 @@
+﻿
+@model List<User>
+
+
+    <table>
+        <thead>
+            <tr>
+                <td>Id</td>
+                <td>Name</td>
+                <td>Gender</td>
+                <td>Action</td>
+                <td>Action</td>
+            </tr>
+        </thead>
+
+        <tbody>
+
+
+            @foreach(var user in Model)
+            {
+            <tr>
+                <td>@user.Id</td>
+                <td>@user.Name</td>
+                <td>@user.Gender</td>
+                 <td><a href="Home/Edit/">Edit</a></td>
+                 <td><a href="#">Delete</a></td>
+            </tr>
+            }
+
+        </tbody>
+
+    </table>
+
+    <input type="submit" value="Create"/>
