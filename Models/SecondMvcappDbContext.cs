@@ -15,6 +15,10 @@ public partial class SecondMvcappDbContext : DbContext
     {
     }
 
+    public virtual DbSet<Employee> Employees { get; set; }
+
+    public virtual DbSet<Teacher> Teachers { get; set; }
+
     public virtual DbSet<User> Users { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -22,6 +26,24 @@ public partial class SecondMvcappDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<Employee>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__Employee__3214EC07F27BD7B8");
+
+            entity.Property(e => e.Name)
+                .HasMaxLength(100)
+                .IsUnicode(false);
+        });
+
+        modelBuilder.Entity<Teacher>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__Teachers__3214EC0776F9574A");
+
+            entity.Property(e => e.Name)
+                .HasMaxLength(100)
+                .IsUnicode(false);
+        });
+
         modelBuilder.Entity<User>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__Users__3214EC07056D6130");

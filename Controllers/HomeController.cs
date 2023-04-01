@@ -8,17 +8,35 @@ namespace ThirdMVCApp.Controllers
         public IActionResult Index()
         {
             SecondMvcappDbContext db = new SecondMvcappDbContext();
-              var users= db.Users.ToList();
+
+            var users = db.Users.ToList();
+            //var employees = db.Employees.ToList();
+            //var teachers= db.Teachers.ToList();           
 
             return View(users);
         }
 
+        [HttpGet]
         public IActionResult Create()
         {
-            return View();
+            User user= new User();
+            return View(user);
         }
 
-        public IActionResult Edit()
+        [HttpPost]
+        public IActionResult Create(User user)
+        {
+
+            SecondMvcappDbContext db = new SecondMvcappDbContext();
+            db.Users.Add(user);
+            db.SaveChanges();
+            
+
+            return RedirectToAction("Index");
+        }
+
+
+        public IActionResult Update()
         {
             return View();
         }
