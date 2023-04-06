@@ -19,7 +19,7 @@ namespace ThirdMVCApp.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            User user= new User();
+            User user = new User();
             return View(user);
         }
 
@@ -30,15 +30,46 @@ namespace ThirdMVCApp.Controllers
             SecondMvcappDbContext db = new SecondMvcappDbContext();
             db.Users.Add(user);
             db.SaveChanges();
-            
+
 
             return RedirectToAction("Index");
         }
 
 
-        public IActionResult Update()
+
+        public IActionResult Delete(int id)
         {
-            return View();
+            SecondMvcappDbContext db = new SecondMvcappDbContext();
+            var user = db.Users.Find(id);
+
+            if (user != null)
+            {
+                db.Users.Remove(user);
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
+        }
+
+
+
+        [HttpGet]
+        public IActionResult Update(int id)
+        {
+            SecondMvcappDbContext db = new SecondMvcappDbContext();
+            var user = db.Users.Find(id);
+            return View(user);
+        }
+
+        [HttpPost]
+        public IActionResult Update(User user)
+        {
+
+            SecondMvcappDbContext db = new SecondMvcappDbContext();
+            db.Users.Update(user);
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
         }
 
 

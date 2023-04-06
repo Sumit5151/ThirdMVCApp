@@ -1,14 +1,10 @@
-﻿@model List<User>
+﻿
+@model List<User>
 
 
 <html>
 <head>
     <title></title>
-   
-
-    
-
-
 </head>
 <body>
     <h1>Index view</h1>
@@ -20,21 +16,19 @@
                 <td>Gender</td>
                  <td>Update</td>
                  <td>Delete</td>
-
             </tr>
         </thead>
 
-        <tbody>
-
-
+        <tbody>             
             @foreach (var user in Model)
             {
                 <tr>
-                    <td>@user.Id</td>
+                   
+                    <td>1</td>
                     <td>@user.Name</td>
                     <td>@user.Gender</td>
-                    <td><a href="#">Update</a></td>
-                    <td><a href="#">Delete</a></td>
+                    <td><a href="Home/Update/@userKD.Id">Update</a></td>
+                    <td><a href="Home/Delete/@user.Id">Delete</a></td>
 
                 </tr>
             }
@@ -43,7 +37,7 @@
 
     </table>
 
-   <a href="Home/Create/">Create</a>
+   <a href="Home/Create/" class="btn btn-primary">Create</a>
 </body>
 </html>
 
