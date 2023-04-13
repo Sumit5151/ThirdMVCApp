@@ -14,7 +14,11 @@ namespace ThirdMVCApp.Controllers
         [HttpGet]
         public IActionResult Registration()
         {
-           
+
+            SecondMvcappDbContext db = new SecondMvcappDbContext();
+            var genders = db.Genders.ToList();
+            ViewBag.GenderList = genders;
+
             User user = new User();
             return View(user);
         }
@@ -22,12 +26,14 @@ namespace ThirdMVCApp.Controllers
         [HttpPost]
         public IActionResult Registration(User user)
         {
+            SecondMvcappDbContext db = new SecondMvcappDbContext();
             if (ModelState.IsValid == true)
-            {
-                SecondMvcappDbContext db = new SecondMvcappDbContext();
+            {                
                 db.Users.Add(user);
                 db.SaveChanges();
             }
+            var genders = db.Genders.ToList();
+            ViewBag.GenderList = genders;
             return View(user);
         }
     }

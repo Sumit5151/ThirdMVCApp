@@ -17,6 +17,8 @@ public partial class SecondMvcappDbContext : DbContext
 
     public virtual DbSet<Employee> Employees { get; set; }
 
+    public virtual DbSet<Gender> Genders { get; set; }
+
     public virtual DbSet<Teacher> Teachers { get; set; }
 
     public virtual DbSet<User> Users { get; set; }
@@ -35,6 +37,16 @@ public partial class SecondMvcappDbContext : DbContext
                 .IsUnicode(false);
         });
 
+        modelBuilder.Entity<Gender>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__Genders__3214EC27C4B133C4");
+
+            entity.Property(e => e.Id).HasColumnName("ID");
+            entity.Property(e => e.Text)
+                .HasMaxLength(10)
+                .IsUnicode(false);
+        });
+
         modelBuilder.Entity<Teacher>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__Teachers__3214EC0776F9574A");
@@ -46,17 +58,25 @@ public partial class SecondMvcappDbContext : DbContext
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Users__3214EC07056D6130");
+            entity.HasKey(e => e.Id).HasName("PK__Users__3214EC27C15AC0AC");
 
-            entity.Property(e => e.Gender)
-                .HasMaxLength(10)
-                .IsUnicode(false);
-            entity.Property(e => e.MobileNumber)
-                .HasMaxLength(15)
-                .IsUnicode(false);
-            entity.Property(e => e.Name)
+            entity.Property(e => e.Id).HasColumnName("ID");
+            entity.Property(e => e.Email)
                 .HasMaxLength(100)
                 .IsUnicode(false);
+            entity.Property(e => e.FirstName)
+                .HasMaxLength(100)
+                .IsUnicode(false);
+            entity.Property(e => e.LastName)
+                .HasMaxLength(100)
+                .IsUnicode(false);
+            entity.Property(e => e.MobileNumber)
+                .HasMaxLength(100)
+                .IsUnicode(false);
+
+            entity.HasOne(d => d.Gender).WithMany(p => p.Users)
+                .HasForeignKey(d => d.GenderId)
+                .HasConstraintName("FK__Users__GenderId__4BAC3F29");
         });
 
         OnModelCreatingPartial(modelBuilder);

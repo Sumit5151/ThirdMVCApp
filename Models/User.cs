@@ -9,9 +9,17 @@ public partial class User
     public int Id { get; set; }
 
     [Required]
-    public string? Name { get; set; }
+    [EmailAddress]
+    public string? Email { get; set; }
     [Required]
-    public string? Gender { get; set; }
+    public string? FirstName { get; set; }
+    [Required]
+    public string? LastName { get; set; }
+
+    public int? GenderId { get; set; }
     [Required]    
+    [RegularExpression(@"^(\+\d{1,2}\s?)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$")]
     public string? MobileNumber { get; set; }
+
+    public virtual Gender? Gender { get; set; }
 }
