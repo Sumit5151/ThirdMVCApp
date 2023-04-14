@@ -73,6 +73,9 @@ public partial class SecondMvcappDbContext : DbContext
             entity.Property(e => e.MobileNumber)
                 .HasMaxLength(100)
                 .IsUnicode(false);
+            entity.Property(e => e.Password)
+                .HasMaxLength(20)
+                .IsUnicode(false);
 
             entity.HasOne(d => d.Gender).WithMany(p => p.Users)
                 .HasForeignKey(d => d.GenderId)

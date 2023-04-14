@@ -9,12 +9,8 @@ namespace ThirdMVCApp.Controllers
         {
             SecondMvcappDbContext db = new SecondMvcappDbContext();
 
-            var users = db.Users.ToList();
-
-            //var employees = db.Employees.ToList();
-            //var teachers= db.Teachers.ToList();           
-
-            return View(users);
+            var u = db.Users.ToList();
+            return View();
         }
 
         [HttpGet]
