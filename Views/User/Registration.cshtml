@@ -1,4 +1,4 @@
-﻿@model User
+﻿@model UserRegistrationViewModel
 
 
 <h1> Regisration User</h1>
@@ -25,8 +25,15 @@
         <div class="form-group">
             <label class="control-label col-sm-2" asp-for="Password"></label>
             <div class="col-sm-10">
-                <input type="password" class="form-control" asp-for="Password">
+                <input type="text" class="form-control" asp-for="Password">
                 <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+        </div>
+         <div class="form-group">
+            <label class="control-label col-sm-2" asp-for="ConfirmPassword"></label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" asp-for="ConfirmPassword">
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
             </div>
         </div>
 

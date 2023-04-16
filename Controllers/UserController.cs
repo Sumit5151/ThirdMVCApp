@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-
+using ThirdMVCApp.DAL;
 
 namespace ThirdMVCApp.Controllers
 {
@@ -19,23 +19,34 @@ namespace ThirdMVCApp.Controllers
             var genders = db.Genders.ToList();
             ViewBag.GenderList = genders;
 
-            User user = new User();
-            return View(user);
+            UserRegistrationViewModel userVM = new UserRegistrationViewModel();
+            return View(userVM);
         }
 
         [HttpPost]
-        public IActionResult Registration(User user)
+        public IActionResult Registration(UserRegistrationViewModel userVM)
         {
             SecondMvcappDbContext db = new SecondMvcappDbContext();
             if (ModelState.IsValid == true)
             {
+                //convert from UserViewModel to UserDTO model
+                User user = new User(); //DTO
+                user.Email = userVM.Email;
+                user.FirstName = userVM.FirstName;
+                user.LastName = userVM.LastName;
+                user.GenderId = userVM.GenderId;
+                user.Password = userVM.Password;
+                user.MobileNumber = userVM.MobileNumber;
+
+
+
                 db.Users.Add(user);
                 db.SaveChanges();
                 return RedirectToAction("Index", "User");
             }
             var genders = db.Genders.ToList();
             ViewBag.GenderList = genders;
-            return View(user);
+            return View(userVM);
         }
 
 

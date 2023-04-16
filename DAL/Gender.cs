@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ThirdMVCApp.Models;
+namespace ThirdMVCApp.DAL;
 
 public partial class Gender
 {

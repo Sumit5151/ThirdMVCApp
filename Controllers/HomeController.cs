@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ThirdMVCApp.DAL;
 using ThirdMVCApp.Models;
 
 namespace ThirdMVCApp.Controllers

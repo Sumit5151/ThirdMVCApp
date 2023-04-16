@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace ThirdMVCApp.Models;
+namespace ThirdMVCApp.DAL;
 
 public partial class SecondMvcappDbContext : DbContext
 {
@@ -61,6 +61,9 @@ public partial class SecondMvcappDbContext : DbContext
             entity.HasKey(e => e.Id).HasName("PK__Users__3214EC27C15AC0AC");
 
             entity.Property(e => e.Id).HasColumnName("ID");
+            entity.Property(e => e.AdharNumber)
+                .HasMaxLength(100)
+                .IsUnicode(false);
             entity.Property(e => e.Email)
                 .HasMaxLength(100)
                 .IsUnicode(false);
